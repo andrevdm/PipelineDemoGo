@@ -33,8 +33,8 @@ type PipelineState struct {
 
 
 //Step to print the current state
-func pringStep(evt ValueEvent, st PipelineState) PipelineState{
-	fmt.Println( "pring" )
+func printStep(evt ValueEvent, st PipelineState) PipelineState{
+	fmt.Println( "print" )
 	fmt.Printf( "   %+v\n", st )
 	return st
 }
@@ -106,9 +106,9 @@ func main() {
 	channels = make(map[string]chan ValueEvent)
 
 	addHist := mkAddHistoryStep( 2 )
-	channels["demo1"] = buildPipeline( "demo1", []func(ValueEvent, PipelineState)PipelineState{addHist, avgOverHistoryStep, pringStep} )
+	channels["demo1"] = buildPipeline( "demo1", []func(ValueEvent, PipelineState)PipelineState{addHist, avgOverHistoryStep, printStep} )
 
-	//channels["demo2"] = buildPipeline( "demo2", []func(ValueEvent, PipelineState)PipelineState{addHist, runningAvgStep, pringStep} )
+	//channels["demo2"] = buildPipeline( "demo2", []func(ValueEvent, PipelineState)PipelineState{addHist, runningAvgStep, printStep} )
 
 	for{
 		text, _ := reader.ReadString('\n')
